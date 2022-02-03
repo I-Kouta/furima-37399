@@ -9,9 +9,7 @@
 | encrypted_password | string  | null: false               |
 | last_name          | string  | null: false               |
 | first_name         | string  | null: false               |
-| barthday_year_id   | integer | null: false               |
-| barthday_month_id  | integer | null: false               |
-| barthday_date_id   | integer | null: false               |
+| barthday_id        | date    | null: false               |
 
 ### Association
 - has_many :items
@@ -22,13 +20,14 @@
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | title         | string     | null: false                    |
-| text          | text       | null: false                    |
+| content       | text       | null: false                    |
 | genre_id      | integer    | null: false                    |
 | condition_id  | integer    | null: false                    |
 | cost_id       | integer    | null: false                    |
 | prefecture_id | integer    | null: false                    |
-| price         | integer    | null: false                    |
 | date_id       | integer    | null: false                    |
+| price         | integer    | null: false                    |
+| user          | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -36,8 +35,10 @@
 
 ## records テーブル
 
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -47,14 +48,15 @@
 
 ## addresses テーブル
 
-| Column        | Type    | Options                      |
-| ------------- | ------- | ---------------------------- |
-| post_code     | integer | null: false                  |
-| prefecture_id | integer | null: false                  |
-| city          | string  | null: false                  |
-| city_number   | string  | null: false                  |
-| building      | string  | null: false                  |
-| phone_number  | integer | null: false                  |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| post_code     | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    |
+| city_number   | string     | null: false                    |
+| building      | string     |                                |
+| phone_number  | string     | null: false                    |
+| record        | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :record
