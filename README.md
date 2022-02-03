@@ -9,6 +9,8 @@
 | encrypted_password | string  | null: false               |
 | last_name          | string  | null: false               |
 | first_name         | string  | null: false               |
+| last_name_reading  | string  | null: false               |
+| first_name_reading | string  | null: false               |
 | barthday_id        | date    | null: false               |
 
 ### Association
