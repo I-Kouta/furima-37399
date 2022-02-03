@@ -15,6 +15,7 @@
 - has_many :items
 - has_many :records
 
+
 ## items テーブル
 
 | Column        | Type       | Options                        |
@@ -33,6 +34,7 @@
 - belongs_to :user
 - has_one    :record
 
+
 ## records テーブル
 
 | Column | Type       | Options                        |
@@ -45,6 +47,7 @@
 - belongs_to :user
 - belongs_to :item
 - has_one    :address
+
 
 ## addresses テーブル
 
