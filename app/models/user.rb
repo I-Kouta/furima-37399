@@ -10,4 +10,7 @@ class User < ApplicationRecord
   validates :last_name_reading,  presence: true
   validates :first_name_reading, presence: true
   validates :barthday_id,        presence: true
+
+  has_many :items
+  has_many :records
 end
