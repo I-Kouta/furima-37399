@@ -19,7 +19,7 @@
         <%= link_to current_user.nickname, "#", class: "user-nickname"  %>
         <%= link_to 'ログアウト', "#", method: :delete, class: "logout" %>
       <% else %>
-        <%= link_to 'ログイン', "#", class: "login" %>
+        <%= link_to 'ログイン', "/users/sign_in", class: "login" %>
         <%= link_to '新規登録', new_user_registration_path, class: "sign-up" %>
       <% end %>
     </ul>
