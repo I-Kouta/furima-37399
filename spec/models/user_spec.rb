@@ -55,7 +55,7 @@ RSpec.describe User, type: :model do
         @user.password = "aaaaaa"
         @user.password_confirmation = "aaaaaa"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+        expect(@user.errors.full_messages).to include("Password is invalid. Include both letters and numbers")
       end
       it "パスワードとパスワード(確認)が一致しない" do
         @user.password = "111aaa"
@@ -87,6 +87,26 @@ RSpec.describe User, type: :model do
         @user.barthday_id = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Barthday can't be blank")
+      end
+      it "last_nameが全角で記述されていない" do
+        @user.last_name = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name is invalid. Input full-width characters")
+      end
+      it "first_nameが全角で記述されていない" do
+        @user.first_name = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid. Input full-width characters")
+      end
+      it "last_name_readingが全角で記述されていない" do
+        @user.last_name_reading = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name reading is invalid. Input full-width characters")
+      end
+      it "first_name_readingが全角で記述されていない" do
+        @user.first_name_reading = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name reading is invalid. Input full-width characters")
       end
     end
   end
