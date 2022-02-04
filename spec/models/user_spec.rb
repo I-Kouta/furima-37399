@@ -101,12 +101,12 @@ RSpec.describe User, type: :model do
       it "last_name_readingが全角で記述されていない" do
         @user.last_name_reading = "aaa"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name reading is invalid. Input full-width characters")
+        expect(@user.errors.full_messages).to include("Last name reading is invalid. Input full-width katakana characters")
       end
       it "first_name_readingが全角で記述されていない" do
         @user.first_name_reading = "aaa"
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name reading is invalid. Input full-width characters")
+        expect(@user.errors.full_messages).to include("First name reading is invalid. Input full-width katakana characters")
       end
     end
   end
