@@ -27,7 +27,7 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
-      it "重複したemailが存在している" do
+      it "emailが重複して存在している" do
         @user.save
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
@@ -63,7 +63,7 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is invalid. Include both letters and numbers")
       end
-      it "パスワードに全角文字があると登録できない" do
+      it "パスワードが全角文字を含んでいる" do
         @user.password = "１２３４５６7a"
         @user.password_confirmation = "１２３４５６7a"
         @user.valid?
@@ -80,45 +80,65 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
-      it "first_nameが入力されていない" do
-        @user.first_name = ""
-        @user.valid?
-        expect(@user.errors.full_messages).to include("First name can't be blank")
-      end
-      it "last_name_readingが入力されていない" do
-        @user.last_name_reading = ""
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Last name reading can't be blank")
-      end
-      it "first_name_readingが入力されていない" do
-        @user.first_name_reading = ""
-        @user.valid?
-        expect(@user.errors.full_messages).to include("First name reading can't be blank")
-      end
-      it "生年月日が入力されていない" do
-        @user.barthday_id = ""
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Barthday can't be blank")
-      end
       it "last_nameが全角で記述されていない" do
         @user.last_name = "aaa"
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name is invalid. Input full-width characters")
+      end
+      it "first_nameが入力されていない" do
+        @user.first_name = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name can't be blank")
       end
       it "first_nameが全角で記述されていない" do
         @user.first_name = "aaa"
         @user.valid?
         expect(@user.errors.full_messages).to include("First name is invalid. Input full-width characters")
       end
+      it "last_name_readingが入力されていない" do
+        @user.last_name_reading = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name reading can't be blank")
+      end
+      it "last_name_readingに漢字が入力されている" do
+        @user.last_name_reading = "漢字"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name reading is invalid. Input full-width katakana characters")
+      end
+      it "last_name_readingに平仮名が入力されている" do
+        @user.last_name_reading = "ひらがな"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name reading is invalid. Input full-width katakana characters")
+      end
       it "last_name_readingが全角で記述されていない" do
         @user.last_name_reading = "aaa"
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name reading is invalid. Input full-width katakana characters")
       end
+      it "first_name_readingが入力されていない" do
+        @user.first_name_reading = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name reading can't be blank")
+      end
+      it "first_name_readingに漢字が入力されている" do
+        @user.first_name_reading = "漢字"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name reading is invalid. Input full-width katakana characters")
+      end
+      it "first_name_readingに平仮名が入力されている" do
+        @user.first_name_reading = "ひらがな"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name reading is invalid. Input full-width katakana characters")
+      end
       it "first_name_readingが全角で記述されていない" do
         @user.first_name_reading = "aaa"
         @user.valid?
         expect(@user.errors.full_messages).to include("First name reading is invalid. Input full-width katakana characters")
+      end
+      it "生年月日が入力されていない" do
+        @user.barthday_id = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Barthday can't be blank")
       end
     end
   end
