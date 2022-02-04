@@ -6,7 +6,7 @@ FactoryBot.define do
     password_confirmation {password}
     last_name             {"岩淵"}
     first_name            {"昂太"}
-    last_name_reading    {"イワブチ"}
+    last_name_reading     {"イワブチ"}
     first_name_reading    {"コウタ"}
     barthday_id           {"1999-02-22"}
   end
