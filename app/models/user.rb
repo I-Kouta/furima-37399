@@ -5,10 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   validates :nickname,           presence: true
-  validates :last_name,          presence: true
-  validates :first_name,         presence: true
-  validates :last_name_reading,  presence: true
-  validates :first_name_reading, presence: true
   validates :barthday_id,        presence: true
   
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
