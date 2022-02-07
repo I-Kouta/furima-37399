@@ -17,13 +17,15 @@ RSpec.describe Item, type: :model do
       end
       it "説明欄が入力されていない" do
       end
-      it "カテゴリーが選択されていない" do
+      it "カテゴリーが選択されていない(id=1)" do
       end
-      it "商品の状態が選択されていない" do
+      it "商品の状態が選択されていない(id=1)" do
       end
-      it "配送料の負担が選択されていない" do
+      it "配送料の負担が選択されていない(id=1)" do
       end
-      it "発送までの日数が選択されていない" do
+      it "発送元の地域が選択されていない(id=1)" do
+      end
+      it "発送までの日数が選択されていない(id=1)" do
       end
       it "販売価格が入力されていない" do
       end
@@ -32,6 +34,8 @@ RSpec.describe Item, type: :model do
       it "販売価格が300円未満で登録されている" do
       end
       it "販売価格が10,000,000円以上で登録されている" do
+      end
+      it "userが紐づいていないと出品ができない" do
       end
     end
   
