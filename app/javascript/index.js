@@ -1,7 +1,19 @@
 function price(){
   const itemPrice = document.getElementById("item-price");
-  const addTax = document.getElementById("add-tax-price");
-  const Profit = document.getElementById("profit");
-}
+  
+  
+  itemPrice.addEventListener("keyup", () => {
+    const countTax = itemPrice.value * 0.1;
+    const addTaxPrice = document.getElementById("add-tax-price");
+    addTaxPrice.innerHTML = `${countTax}`
+  });
+  
+  itemPrice.addEventListener("keyup", () => {
+    const countProfit = itemPrice.value * 0.9;
+    const Profit = document.getElementById("profit");
+    Profit.innerHTML = `${countProfit}`
+  });
+
+};
 
 window.addEventListener('load', price);
