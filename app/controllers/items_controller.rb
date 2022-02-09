@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
-  before_action :get_item_info, only: [:show, :edit, :update]
+  before_action :item_info, only: [:show, :edit, :update]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -23,9 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless user_signed_in? && (current_user.id == @item.user_id)
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless user_signed_in? && (current_user.id == @item.user_id)
   end
 
   def update
@@ -52,7 +50,7 @@ class ItemsController < ApplicationController
                                  :price).merge(user_id: current_user.id)
   end
 
-  def get_item_info
+  def item_info
     @item = Item.find(params[:id])
   end
 end
