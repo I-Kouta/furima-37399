@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :item
   has_one    :address
+  attr_accessor :token
 
   validates :post_code, presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
   
