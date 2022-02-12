@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:price)
+    params.require(:address).permit(:post_code, :prefecture_id, :city, :city_number, :building, :phone_number)
   end
 
   def pay_item
