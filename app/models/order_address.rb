@@ -8,4 +8,10 @@ class OrderAddress
   end
   validates :phone_number, numericality: { only_integer: true, message: 'is invalid. Input half-width characters' }
   validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
+
+  def save
+    order = Order.create(item_id: item_id, user_id: user_id)
+    
+    Address.create(post_code: post_code, prefecture_id: prefecture_id, city: city, city_number: city_number, building: building, phone_number: phone_number,  order_id: order.id)
+  end
 end
