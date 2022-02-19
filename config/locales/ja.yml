@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+        barthday_id: 生年月日
+        last_name: 苗字
+        first_name: 名前
+        last_name_reading: 苗字(カナ)
+        first_name_reading: 名前(カナ)
+      tweet:
+        image: 画像
