@@ -55,19 +55,19 @@ RSpec.describe User, type: :model do
         @user.password = 'aaaaaa'
         @user.password_confirmation = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
+        expect(@user.errors.full_messages).to include('Password が無効です。英数字どちらも入力してください')
       end
       it 'パスワードが半角数字のみでは登録できない' do
         @user.password = '111111'
         @user.password_confirmation = '111111'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
+        expect(@user.errors.full_messages).to include('Password が無効です。英数字どちらも入力してください')
       end
       it 'パスワードが全角文字を含んでいる' do
         @user.password = '１２３４５６7a'
         @user.password_confirmation = '１２３４５６7a'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
+        expect(@user.errors.full_messages).to include('Password が無効です。英数字どちらも入力してください')
       end
       it 'パスワードとパスワード(確認)が一致しない' do
         @user.password = '111aaa'
@@ -83,7 +83,7 @@ RSpec.describe User, type: :model do
       it 'last_nameが全角で記述されていない' do
         @user.last_name = 'aaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Last name is invalid. Input full-width characters')
+        expect(@user.errors.full_messages).to include('Last name は全角で入力してください')
       end
       it 'first_nameが入力されていない' do
         @user.first_name = ''
@@ -93,7 +93,7 @@ RSpec.describe User, type: :model do
       it 'first_nameが全角で記述されていない' do
         @user.first_name = 'aaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include('First name is invalid. Input full-width characters')
+        expect(@user.errors.full_messages).to include('First name は全角で入力してください')
       end
       it 'last_name_readingが入力されていない' do
         @user.last_name_reading = ''
@@ -103,17 +103,17 @@ RSpec.describe User, type: :model do
       it 'last_name_readingに漢字が入力されている' do
         @user.last_name_reading = '漢字'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Last name reading is invalid. Input full-width katakana characters')
+        expect(@user.errors.full_messages).to include('Last name reading は全角カナで入力してください')
       end
       it 'last_name_readingに平仮名が入力されている' do
         @user.last_name_reading = 'ひらがな'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Last name reading is invalid. Input full-width katakana characters')
+        expect(@user.errors.full_messages).to include('Last name reading は全角カナで入力してください')
       end
       it 'last_name_readingが全角で記述されていない' do
         @user.last_name_reading = 'aaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Last name reading is invalid. Input full-width katakana characters')
+        expect(@user.errors.full_messages).to include('Last name reading は全角カナで入力してください')
       end
       it 'first_name_readingが入力されていない' do
         @user.first_name_reading = ''
@@ -123,17 +123,17 @@ RSpec.describe User, type: :model do
       it 'first_name_readingに漢字が入力されている' do
         @user.first_name_reading = '漢字'
         @user.valid?
-        expect(@user.errors.full_messages).to include('First name reading is invalid. Input full-width katakana characters')
+        expect(@user.errors.full_messages).to include('First name reading は全角カナで入力してください')
       end
       it 'first_name_readingに平仮名が入力されている' do
         @user.first_name_reading = 'ひらがな'
         @user.valid?
-        expect(@user.errors.full_messages).to include('First name reading is invalid. Input full-width katakana characters')
+        expect(@user.errors.full_messages).to include('First name reading は全角カナで入力してください')
       end
       it 'first_name_readingが全角で記述されていない' do
         @user.first_name_reading = 'aaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include('First name reading is invalid. Input full-width katakana characters')
+        expect(@user.errors.full_messages).to include('First name reading は全角カナで入力してください')
       end
       it '生年月日が入力されていない' do
         @user.barthday_id = ''
