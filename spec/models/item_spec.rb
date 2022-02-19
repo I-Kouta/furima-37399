@@ -30,27 +30,27 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーが選択されていない(id=1)' do
         @item.genre_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Genre can't be blank")
+        expect(@item.errors.full_messages).to include("Genre が選択されていません")
       end
       it '商品の状態が選択されていない(id=1)' do
         @item.condition_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition can't be blank")
+        expect(@item.errors.full_messages).to include("Condition が選択されていません")
       end
       it '配送料の負担が選択されていない(id=1)' do
         @item.cost_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Cost can't be blank")
+        expect(@item.errors.full_messages).to include("Cost が選択されていません")
       end
       it '発送元の地域が選択されていない(id=1)' do
         @item.prefecture_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@item.errors.full_messages).to include("Prefecture が選択されていません")
       end
       it '発送までの日数が選択されていない(id=1)' do
         @item.shipping_date_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping date can't be blank")
+        expect(@item.errors.full_messages).to include("Shipping date が選択されていません")
       end
       it '販売価格が入力されていない' do
         @item.price = ''
@@ -60,17 +60,17 @@ RSpec.describe Item, type: :model do
       it '販売価格が全角数字で入力されている' do
         @item.price = '３３３３'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width characters')
+        expect(@item.errors.full_messages).to include('Price は半角数字で入力してください')
       end
       it '販売価格が300円未満で登録されている' do
         @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is out of setting range')
+        expect(@item.errors.full_messages).to include('Price が設定範囲外です')
       end
       it '販売価格が10,000,000円以上で登録されている' do
         @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is out of setting range')
+        expect(@item.errors.full_messages).to include('Price が設定範囲外です')
       end
       it 'userが紐づいていないと出品ができない' do
         @item.user = nil
