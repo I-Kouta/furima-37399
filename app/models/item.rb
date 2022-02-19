@@ -18,5 +18,5 @@ class Item < ApplicationRecord
             numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'が設定範囲外です' }
 
   validates :genre_id, :condition_id, :cost_id, :prefecture_id, :shipping_date_id,
-            numericality: { other_than: 1, message: "が選択されていません" }
+            numericality: { other_than: 1, message: 'が選択されていません' }
 end
