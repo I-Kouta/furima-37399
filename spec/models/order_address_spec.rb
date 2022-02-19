@@ -6,6 +6,7 @@ RSpec.describe OrderAddress, type: :model do
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
       @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
+      sleep(0.1)
     end
     context '購入ができる場合' do
       it 'すべての値が正しく入力されていれば保存できる' do
@@ -31,12 +32,12 @@ RSpec.describe OrderAddress, type: :model do
       it '郵便番号にハイフンがない' do
         @order_address.post_code = '1112222'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Post code is invalid. Enter it as follows (e.g. 123-4567)')
+        expect(@order_address.errors.full_messages).to include('Post code  は以下の様に入力してください (e.g. 123-4567)')
       end
       it '都道府県が選択されていない' do
         @order_address.prefecture_id = '1'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@order_address.errors.full_messages).to include("Prefecture が選択されていません")
       end
       it '市区町村が入力されていない' do
         @order_address.city = ''
@@ -56,17 +57,17 @@ RSpec.describe OrderAddress, type: :model do
       it '電話番号が9桁以下である' do
         @order_address.phone_number = '12345678'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Phone number is out of setting range')
+        expect(@order_address.errors.full_messages).to include('Phone number が有効ではありません')
       end
       it '電話番号が12桁以上である' do
         @order_address.phone_number = '012345678912'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Phone number is out of setting range')
+        expect(@order_address.errors.full_messages).to include('Phone number が有効ではありません')
       end
       it '電話番号が半角で入力されていない' do
         @order_address.phone_number = '1234５６７８９'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Phone number is invalid. Input only number')
+        expect(@order_address.errors.full_messages).to include('Phone number は半角で入力してください')
       end
       it 'userが紐づいていない' do
         @order_address.user_id = nil
